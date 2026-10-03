@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Rüyam Çiçek - En taze ve güzel çiçekler. Güller, laleler, orkideler ve daha fazlası. Hemen sipariş verin!">
+  <title>Rüyam Çiçek | Çiçek Siparişi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <ul class="nav-links-left">
+      <li><a href="#anasayfa">Ana Sayfa</a></li>
+      <li class="nav-dropdown" id="nav-kategoriler">
+        <a href="#urunler" class="dropdown-toggle">Kategoriler <svg class="dropdown-arrow" width="10" height="6"
+            viewBox="0 0 10 6" fill="currentColor">
+            <path d="M1 1l4 4 4-4" />
+          </svg></a>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <!-- JS ile doldurulacak -->
+        </div>
+      </li>
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
+    </ul>
+    <div class="logo">
+      <span class="logo-ruyam">Rüyam</span>
+      <span class="logo-cicek">Çiçek</span>
+    </div>
+    <ul class="nav-links-right">
+      <li><a href="#neden">Neden Biz</a></li>
+      <li><a href="#ozel">Özel Günler</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+    <button class="admin-panel-btn" id="admin-panel-btn" aria-label="Yönetim Paneli" title="Yönetim Paneli">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <a href="#anasayfa">Ana Sayfa</a>
+    <div class="mobile-dropdown">
+      <a href="#" class="mobile-dropdown-toggle">Kategoriler <svg class="dropdown-arrow" width="10" height="6"
+          viewBox="0 0 10 6" fill="currentColor">
+          <path d="M1 1l4 4 4-4" />
+        </svg></a>
+      <div class="mobile-dropdown-items">
+        <!-- JS ile doldurulacak -->
+      </div>
+    </div>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#neden">Neden Biz</a>
+    <a href="#ozel">Özel Günler</a>
+    <a href="#iletisim">İletişim</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="anasayfa">
+    <div class="hero-image">
+      <img src="images/anasayfa_1.jpg" alt="Rüyam Çiçek">
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-line1">Rüyam</span>
+        <span class="hero-line2">Çiçek</span>
+      </h1>
+      <p class="hero-subtitle">Hayalinizdeki çiçekleri kapınıza getiriyoruz</p>
+      <a href="#urunler" class="hero-btn">Çiçekleri Keşfet</a>
+    </div>
+  </section>
+
+  <!-- BOUQUETS FOR MOOD -->
+  <section class="section section-bouquets" id="urunler">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">BUKETTEN<br>RUHUNUZA</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="filter-pills" id="filter-pills">
+      <!-- JS ile doldurulacak -->
+    </div>
+
+    <div class="bouquets-grid" id="bouquets-grid">
+      <!-- JS ile doldurulacak -->
+    </div>
+  </section>
+
+  <!-- WHY GIVE FLOWERS -->
+  <section class="section-why fade-in">
+    <div class="why-container">
+      <div class="why-images">
+        <img src="images/tulips.png" alt="Çiçek 1" class="why-img why-img-1">
+        <img src="images/orchids.png" alt="Çiçek 2" class="why-img why-img-2">
+        <img src="images/carnations.png" alt="Çiçek 3" class="why-img why-img-3">
+      </div>
+      <div class="why-text">
+        <h2>Neden çiçek hediye etmelisiniz?</h2>
+        <p class="why-highlight">Çiçek buketi vermek — sevgi, saygı ve ilgi göstermenin en zarif yoludur. Kelimeler
+          yetmediğinde çiçekler konuşur.</p>
+        <p>Çiçekler sevgi, minnettarlık, hayranlık, ilgi ve özlem gibi duyguları en güzel şekilde ifade eder.</p>
+        <p>Hayatın özel anlarında yanınızda olmak için buradayız.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section class="section-about" id="hakkimizda">
+    <div class="about-container">
+      <div class="about-left fade-in">
+        <div class="about-nav">
+          <a href="#anasayfa">ana sayfa</a>
+          <span>/</span>
+          <a href="#urunler">ürünler</a>
+          <span>/</span>
+          <a href="#hakkimizda" class="active">hakkımızda</a>
+        </div>
+        <h2>Hakkımızda</h2>
+        <p>Rüyam Çiçek olarak yılların deneyimiyle en taze ve en güzel çiçekleri sizlere sunmaktayız. Her buketimiz
+          özenle ve sevgiyle hazırlanır.</p>
+        <p>Doğum günleri, yıl dönümleri, sevgililer günü veya herhangi özel bir gün olsun — en anlamlı hediye her zaman
+          çiçeklerdir.</p>
+        <a href="https://wa.me/905320520831?text=Merhaba,%20çiçek%20siparişi%20vermek%20istiyorum." target="_blank"
+          class="about-order-btn">Sipariş Ver</a>
+      </div>
+      <div class="about-right fade-in">
+        <div class="about-gallery">
+          <img src="images/Ruyam_dukkan.jpeg" alt="Mağazamız" class="about-img-main">
+          <div class="about-img-grid">
+            <img src="images/bouquet_pink.png" alt="Buket 1">
+            <img src="images/bouquet_mixed.png" alt="Buket 2">
+            <img src="images/bouquet_white.png" alt="Buket 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section-reasons" id="neden">
+    <div class="reasons-container fade-in">
+      <div class="reasons-text">
+        <h2>Neden bizi tercih etmelisiniz?</h2>
+        <p>Biz sadece çiçek satmıyoruz — duygularınızı anlatıyoruz. Her buketimiz, en taze çiçeklerden profesyonel
+          floristlerimiz tarafından özenle hazırlanır.</p>
+        <div class="reasons-list">
+          <div class="reason-item">
+            <span class="reason-number">01</span>
+            <div>
+              <h3>Taze Çiçekler</h3>
+              <p>Çiçeklerimiz her gün taze olarak temin edilir</p>
+            </div>
+          </div>
+          <div class="reason-item">
+            <span class="reason-number">02</span>
+            <div>
+              <h3>Profesyonel Tasarım</h3>
+              <p>Uzman floristlerimiz tarafından hazırlanır</p>
+            </div>
+          </div>
+          <div class="reason-item">
+            <span class="reason-number">03</span>
+            <div>
+              <h3>Hızlı Teslimat</h3>
+              <p>Aynı gün teslimat imkanı</p>
+            </div>
+          </div>
+          <div class="reason-item">
+            <span class="reason-number">04</span>
+            <div>
+              <h3>Müşteri Memnuniyeti</h3>
+              <p>5000+ mutlu müşteri</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reasons-image">
+        <img src="images/bouquet_red.png" alt="Buket">
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL OCCASIONS -->
+  <section class="section section-special" id="ozel">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">ÖZEL GÜNLER İÇİN</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="special-grid">
+      <div class="special-main fade-in">
+        <img src="images/special_arrangement_main.png" alt="Özel Aranjman">
+        <div class="special-main-overlay">
+          <h3>Özel Aranjmanlar</h3>
+          <p>Hayalinizdeki buketi birlikte tasarlayalım. Size özel, benzersiz çiçek aranjmanları hazırlıyoruz.</p>
+          <div class="special-social">
+            <a href="https://wa.me/905320520831" target="_blank" aria-label="WhatsApp">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              </svg>
+            </a>
+            <a href="tel:+905320520831" aria-label="Telefon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="special-products" id="special-products">
+        <div class="special-card fade-in">
+          <img src="images/special_flower_1.png" alt="Tutkulu Aşk">
+          <span class="special-name">«Tutkulu Aşk»</span>
+          <span class="special-price">₺850</span>
+          <a href="https://wa.me/905320520831?text=Merhaba,%20Tutkulu%20Aşk%20Aranjmanı%20sipariş%20vermek%20istiyorum."
+            target="_blank" class="bouquet-btn">Satın Al</a>
+        </div>
+        <div class="special-card fade-in">
+          <img src="images/special_flower_2.png" alt="Zarif Beyaz">
+          <span class="special-name">«Zarif Beyaz»</span>
+          <span class="special-price">₺920</span>
+          <a href="https://wa.me/905320520831?text=Merhaba,%20Zarif%20Beyaz%20Aranjmanı%20sipariş%20vermek%20istiyorum."
+            target="_blank" class="bouquet-btn">Satın Al</a>
+        </div>
+        <div class="special-card fade-in">
+          <img src="images/special_flower_3.png" alt="Renkli Kutlama">
+          <span class="special-name">«Renkli Kutlama»</span>
+          <span class="special-price">₺750</span>
+          <a href="https://wa.me/905320520831?text=Merhaba,%20Renkli%20Kutlama%20Aranjmanı%20sipariş%20vermek%20istiyorum."
+            target="_blank" class="bouquet-btn">Satın Al</a>
+        </div>
+        <div class="special-card fade-in">
+          <img src="images/special_flower_4.png" alt="Asil Orkide">
+          <span class="special-name">«Asil Orkide»</span>
+          <span class="special-price">₺1200</span>
+          <a href="https://wa.me/905320520831?text=Merhaba,%20Asil%20Orkide%20Aranjmanı%20sipariş%20vermek%20istiyorum."
+            target="_blank" class="bouquet-btn">Satın Al</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer class="footer" id="iletisim">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h3>İletişim</h3>
+        <p>Çiçek Sokak No:1<br>Piraziz/Giresun</p>
+        <p><a href="tel:+905320520831">0532 052 08 31</a></p>
+        <p>info@ruyamcicek.com</p>
+      </div>
+      <div class="footer-col">
+        <h3>Çalışma Saatleri</h3>
+        <p>Pazartesi — Cumartesi<br>08:00 — 22:00</p>
+        <p>Pazar<br>10:00 — 20:00</p>
+      </div>
+      <div class="footer-col">
+        <h3>Bizi Takip Edin</h3>
+        <p>Güzel çiçeklerimizi ve özel kampanyalarımızı sosyal medyadan takip edebilirsiniz.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/905320520831" target="_blank" aria-label="WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/ruyampetshop_cicekcilik?igsh=MnkydDd4a21ibnpu" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/share/1CUpCH3syj/?mibextid=wwXIfr" aria-label="Facebook">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.642c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Rüyam Çiçek — Tüm Hakları Saklıdır</p>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/905320520831" target="_blank" class="whatsapp-float" title="WhatsApp ile İletişim">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.091.537 4.058 1.481 5.77L.06 23.644a.5.5 0 00.606.606l5.874-1.421A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.82 0-3.542-.476-5.036-1.312l-.352-.207-3.646.882.882-3.646-.207-.352A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+    </svg>
+  </a>
+
+  <!-- LOGIN MODAL -->
+  <div class="login-overlay" id="login-overlay"></div>
+  <div class="login-modal" id="login-modal">
+    <button class="login-close-btn" id="login-close-btn" aria-label="Kapat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <div class="login-icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </div>
+    <h2 class="login-title">Yönetim Paneli</h2>
+    <p class="login-subtitle">Devam etmek için giriş yapın</p>
+    <form class="login-form" id="login-form">
+      <div class="login-field">
+        <label for="login-username">Kullanıcı Adı</label>
+        <input type="text" id="login-username" name="username" placeholder="Kullanıcı adınızı girin"
+          autocomplete="username" required>
+      </div>
+      <div class="login-field">
+        <label for="login-password">Şifre</label>
+        <div class="password-wrapper">
+          <input type="password" id="login-password" name="password" placeholder="Şifrenizi girin"
+            autocomplete="current-password" required>
+          <button type="button" class="password-toggle" id="password-toggle" aria-label="Şifreyi göster">
+            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" style="display:none">
+              <path
+                d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" />
+              <line x1="1" y1="1" x2="23" y2="23" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="login-error" id="login-error"></div>
+      <button type="submit" class="login-btn">Giriş Yap</button>
+    </form>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-overlay" id="admin-overlay"></div>
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-panel-header">
+      <div class="admin-panel-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <h2>Stok Yönetimi</h2>
+      </div>
+      <div class="admin-header-actions">
+        <button class="admin-logout-btn" id="admin-logout-btn" aria-label="Çıkış Yap" title="Çıkış Yap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+        </button>
+        <button class="admin-close-btn" id="admin-close-btn" aria-label="Kapat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="admin-panel-body">
+      <!-- Add Product Form -->
+      <div class="admin-add-section">
+        <button class="admin-add-btn" id="admin-add-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Yeni Ürün Ekle
+        </button>
+        <div class="admin-add-form" id="admin-add-form" style="display:none">
+          <div class="add-form-row">
+            <div class="add-form-field">
+              <label>Ürün Adı</label>
+              <input type="text" id="add-name" placeholder="Ürün adı" required>
+            </div>
+            <div class="add-form-field">
+              <label>Kategori</label>
+              <div class="category-input-group">
+                <div class="custom-select-wrapper" id="add-category-wrapper">
+                  <div class="custom-select-trigger" id="add-category-trigger">
+                    <span class="custom-select-label">Seçiniz...</span>
+                    <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
+                      <path d="M1 1l4 4 4-4" />
+                    </svg>
+                  </div>
+                  <div class="custom-select-options" id="add-category-options">
+                    <!-- JS ile doldurulacak -->
+                  </div>
+                </div>
+                <input type="hidden" id="add-category" value="">
+                <input type="text" id="add-new-category" placeholder="Yeni kategori adı" style="display:none">
+                <button type="button" id="toggle-category-btn" class="toggle-category-btn"
+                  title="Yeni Kategori Ekle">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="add-form-row">
+            <div class="add-form-field">
+              <label>Fiyat (₺)</label>
+              <input type="number" id="add-price" placeholder="0" min="1" required>
+            </div>
+            <div class="add-form-field">
+              <label>Stok</label>
+              <input type="number" id="add-stock" placeholder="0" min="0" required>
+            </div>
+          </div>
+          <div class="add-form-row">
+            <div class="add-form-field">
+              <label>Görsel Seç (PC veya Telefon)</label>
+              <input type="file" id="add-image-file" accept="image/*">
+            </div>
+          </div>
+          <div class="add-form-actions">
+            <button type="button" class="add-cancel-btn" id="add-cancel-btn">İptal</button>
+            <button type="button" class="add-save-btn" id="add-save-btn">Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <table class="admin-table" id="admin-table">
+        <thead>
+          <tr>
+            <th>Ürün</th>
+            <th>Kategori</th>
+            <th>Fiyat</th>
+            <th>Stok</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="admin-table-body">
+          <!-- JS ile doldurulacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
