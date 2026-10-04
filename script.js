@@ -3,8 +3,8 @@ import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from
 import { getFirestore, collection, getDocs, setDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKW6XKMl0Y",
+const defaultFirebaseConfig = {
+  apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKVW6XKMlOY",
   authDomain: "ruyam-cicek.firebaseapp.com",
   projectId: "ruyam-cicek",
   storageBucket: "ruyam-cicek.firebasestorage.app",
@@ -12,6 +12,12 @@ const firebaseConfig = {
   appId: "1:877998133702:web:14ed960d40e006825822c7",
   measurementId: "G-7G56JVJYEW"
 };
+
+const firebaseConfig = window.RUYAM_FIREBASE_CONFIG || defaultFirebaseConfig;
+
+if (!firebaseConfig.projectId || firebaseConfig.projectId !== 'ruyam-cicek') {
+  console.warn('Uyarı: Firebase projesi, kodda beklenen proje ile eşleşmiyor. Lütfen ruyam-cicek projesinde admin kullanıcı oluşturun.');
+}
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -83,6 +89,23 @@ loginForm.addEventListener('submit', async (e) => {
     const email = loginUsername.value.trim();
     const password = loginPassword.value;
 
+    loginError.textContent = '';
+    loginError.classList.remove('visible');
+
+    if (!email || !email.includes('@')) {
+      loginError.textContent = 'Admin girişi için Firebase Authentication’daki e-posta adresini yazın. Kullanıcı adı değil.';
+      loginError.classList.add('visible');
+      loginUsername.focus();
+      return;
+    }
+
+    if (!password) {
+      loginError.textContent = 'Şifre alanı boş bırakılamaz.';
+      loginError.classList.add('visible');
+      loginPassword.focus();
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
@@ -92,7 +115,16 @@ loginForm.addEventListener('submit', async (e) => {
       setTimeout(() => openAdminPanel(), 300);
     } catch (error) {
       console.error('Firebase login hatası:', error);
-      loginError.textContent = 'E-posta veya şifre hatalı!';
+
+      const code = error?.code || '';
+      if (code === 'auth/invalid-email') {
+        loginError.textContent = 'Geçersiz e-posta formatı. Lütfen Firebase’deki gerçek e-posta adresini girin.';
+      } else if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') {
+        loginError.textContent = 'E-posta veya şifre hatalı. Firebase Authentication’da kayıtlı admin hesabını kullanın.';
+      } else {
+        loginError.textContent = 'Giriş başarısız oldu. Lütfen Firebase kullanıcı bilgilerini kontrol edin.';
+      }
+
       loginError.classList.add('visible');
       loginModal.classList.add('shake');
       setTimeout(() => loginModal.classList.remove('shake'), 500);

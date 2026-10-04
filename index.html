@@ -330,11 +330,11 @@
       </svg>
     </div>
     <h2 class="login-title">Yönetim Paneli</h2>
-    <p class="login-subtitle">Devam etmek için giriş yapın</p>
+    <p class="login-subtitle">Firebase’daki admin e-posta ve şifre ile giriş yapın</p>
     <form class="login-form" id="login-form">
       <div class="login-field">
         <label for="login-username">E-posta</label>
-        <input type="email" id="login-username" name="username" placeholder="E-posta adresinizi girin"
+        <input type="email" id="login-username" name="username" placeholder="Firebase admin e-postasını girin"
           autocomplete="email" required>
       </div>
       <div class="login-field">
@@ -466,6 +466,17 @@
     </div>
   </div>
 
+  <script>
+    window.RUYAM_FIREBASE_CONFIG = window.RUYAM_FIREBASE_CONFIG || {
+      apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKW6XKMl0Y",
+      authDomain: "ruyam-cicek.firebaseapp.com",
+      projectId: "ruyam-cicek",
+      storageBucket: "ruyam-cicek.firebasestorage.app",
+      messagingSenderId: "877998133702",
+      appId: "1:877998133702:web:14ed960d40e006825822c7",
+      measurementId: "G-7G56JVJYEW"
+    };
+  </script>
   <script type="module" src="script.js"></script>
 </body>
 
