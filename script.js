@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs, setDoc, updateDoc, deleteDoc, doc } 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 const defaultFirebaseConfig = {
-  apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKVW6XKMlOY",
+  apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKVW6XKMlOY", 
   authDomain: "ruyam-cicek.firebaseapp.com",
   projectId: "ruyam-cicek",
   storageBucket: "ruyam-cicek.firebasestorage.app",
