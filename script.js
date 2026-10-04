@@ -667,19 +667,39 @@ loginForm.addEventListener('submit', async (e) => {
       return;
     }
 
+
+
+    const IMGBB_API_KEY = 'b1533dc655f4322cdeb04e1a5a3a6d8d';
+
+    async function uploadToImgBB(file) {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        return result.data.url;
+      }
+
+      throw new Error(result.error?.message || 'Görsel yüklenemedi.');
+    }
+
     let imagePath = 'images/bouquet_pink.png';
+
     if (imageFile) {
       try {
-        const storageRef = ref(storage, `products/${Date.now()}-${imageFile.name}`);
-        await uploadBytes(storageRef, imageFile);
-        imagePath = await getDownloadURL(storageRef);
+        imagePath = await uploadToImgBB(imageFile);
       } catch (err) {
-        console.error('Görsel yüklenemedi:', err);
+        console.error('Görsel ImgBB tarafına yüklenemedi:', err);
         alert('Görsel yüklenirken bir hata oluştu, varsayılan görsel kullanılacak.');
       }
     }
 
-    products[id] = {
+    const newProduct = {
       name,
       category,
       price,
@@ -687,7 +707,8 @@ loginForm.addEventListener('submit', async (e) => {
       image: imagePath
     };
 
-    syncCreate(id, products[id]);
+    products[id] = newProduct;
+    await syncCreate(id, newProduct);
     renderProductCards();
     renderFilterPills();
     filterByCategory(currentFilter);
