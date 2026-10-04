@@ -1,7 +1,39 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, setDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3UNbmvU2HUoaL7t1LZfpvuKW6XKMl0Y",
+  authDomain: "ruyam-cicek.firebaseapp.com",
+  projectId: "ruyam-cicek",
+  storageBucket: "ruyam-cicek.firebasestorage.app",
+  messagingSenderId: "877998133702",
+  appId: "1:877998133702:web:14ed960d40e006825822c7",
+  measurementId: "G-7G56JVJYEW"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const productsCollection = collection(db, 'products');
+
+let isLoggedIn = sessionStorage.getItem('ruyam_logged_in') === 'true';
+
+onAuthStateChanged(auth, (user) => {
+  isLoggedIn = !!user;
+  if (user) {
+    sessionStorage.setItem('ruyam_logged_in', 'true');
+  } else {
+    sessionStorage.removeItem('ruyam_logged_in');
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ===== AUTHENTICATION =====
-  let isLoggedIn = sessionStorage.getItem('ruyam_logged_in') === 'true';
+  isLoggedIn = sessionStorage.getItem('ruyam_logged_in') === 'true';
 
   const loginOverlay = document.getElementById('login-overlay');
   const loginModal = document.getElementById('login-modal');
@@ -45,33 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
       eyeClosed.style.display = 'none';
     }
   });
-
-  loginForm.addEventListener('submit', async (e) => {
+loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = loginUsername.value.trim();
+    const email = loginUsername.value.trim();
     const password = loginPassword.value;
 
     try {
-      const response = await fetch(`${API_BASE}/api/login`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Kullanıcı adı veya şifre hatalı!');
-      }
+      await signInWithEmailAndPassword(auth, email, password);
 
       isLoggedIn = true;
       sessionStorage.setItem('ruyam_logged_in', 'true');
       closeLoginModal();
       setTimeout(() => openAdminPanel(), 300);
     } catch (error) {
-      loginError.textContent = error.message || 'Kullanıcı adı veya şifre hatalı!';
+      console.error('Firebase login hatası:', error);
+      loginError.textContent = 'E-posta veya şifre hatalı!';
       loginError.classList.add('visible');
       loginModal.classList.add('shake');
       setTimeout(() => loginModal.classList.remove('shake'), 500);
@@ -79,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
       loginPassword.focus();
     }
   });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (loginModal.classList.contains('open')) closeLoginModal();
@@ -97,7 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
     karisik: 'Karışık'
   };
 
-  let deletedCategories = JSON.parse(localStorage.getItem('ruyam_deleted_categories') || '[]');
+  function getSafeArrayFromStorage(key, fallback = []) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return fallback;
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : fallback;
+    } catch (error) {
+      console.warn(`Geçersiz ${key} verisi temizlendi.`, error);
+      localStorage.removeItem(key);
+      return fallback;
+    }
+  }
+
+  let deletedCategories = getSafeArrayFromStorage('ruyam_deleted_categories', []);
 
   function getAllCategories() {
     const cats = { ...CATEGORY_MAP };
@@ -112,55 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const WHATSAPP_NUMBER = '905320520831';
 
-  // ===== PRODUCT DATA =====
-  const API_BASE = (() => {
-    const currentOrigin = window.location.origin;
-    const isFileMode = window.location.protocol === 'file:';
-    const isPreviewMode = currentOrigin.includes('localhost:550') || currentOrigin.includes('127.0.0.1:550');
-
-    if (isFileMode || isPreviewMode) {
-      return 'http://localhost:3000';
-    }
-
-    return currentOrigin;
-  })();
-
-  async function apiFetch(path, options = {}) {
-    const headers = new Headers(options.headers || {});
-    const isFormData = options.body instanceof FormData;
-
-    if (!isFormData && !headers.has('Content-Type') && (options.body || options.method === 'POST' || options.method === 'PUT')) {
-      headers.set('Content-Type', 'application/json');
-    }
-
-    const response = await fetch(`${API_BASE}${path}`, {
-      ...options,
-      credentials: 'include',
-      headers
-    });
-
-    if (response.status === 401) {
-      if (window.location.pathname.includes('index.html') || document.getElementById('admin-panel')) {
-        sessionStorage.removeItem('ruyam_logged_in');
-      }
-    }
-
-    return response;
-  }
-
   let products = {};
 
   async function initProducts() {
     try {
-      const response = await fetch(`${API_BASE}/api/products`, { cache: 'no-store' });
-      const json = await response.json();
-      if (json.data) {
-        json.data.forEach(p => {
-          products[p.id] = p;
-        });
-      }
+      const snapshot = await getDocs(productsCollection);
+      products = {};
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        products[docSnap.id] = { id: docSnap.id, ...data };
+      });
     } catch (err) {
-      console.error('Veritabanına bağlanılamadı.', err);
+      console.error('Firestore ürünler yüklenemedi.', err);
     }
     renderProductCards();
     renderFilterPills();
@@ -168,24 +164,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function syncCreate(id, data) {
     try {
-      await apiFetch('/api/products', {
-        method: 'POST',
-        body: JSON.stringify({ id, ...data })
-      });
-    } catch (e) {}
+      await setDoc(doc(db, 'products', id), data);
+    } catch (e) {
+      console.error('Ürün oluşturulamadı:', e);
+    }
   }
   async function syncUpdate(id, data) {
     try {
-      await apiFetch(`/api/products/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify(data)
-      });
-    } catch (e) {}
+      await updateDoc(doc(db, 'products', id), data);
+    } catch (e) {
+      console.error('Ürün güncellenemedi:', e);
+    }
   }
   async function syncDelete(id) {
     try {
-      await apiFetch(`/api/products/${id}`, { method: 'DELETE' });
-    } catch (e) {}
+      await deleteDoc(doc(db, 'products', id));
+    } catch (e) {
+      console.error('Ürün silinemedi:', e);
+    }
   }
 
   // ===== RENDER PRODUCT CARDS =====
@@ -401,10 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   adminLogoutBtn.addEventListener('click', async () => {
     try {
-      await fetch(`${API_BASE}/api/logout`, {
-        method: 'POST',
-        credentials: 'include'
-      });
+      await signOut(auth);
     } catch (error) {
       console.warn('Çıkış isteği sırasında hata oluştu.', error);
     }
@@ -644,17 +637,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let imagePath = 'images/bouquet_pink.png';
     if (imageFile) {
-      const formData = new FormData();
-      formData.append('image', imageFile);
       try {
-        const uploadRes = await apiFetch('/api/upload', {
-          method: 'POST',
-          body: formData
-        });
-        const uploadData = await uploadRes.json();
-        if (uploadData.imageUrl) {
-          imagePath = uploadData.imageUrl;
-        }
+        const storageRef = ref(storage, `products/${Date.now()}-${imageFile.name}`);
+        await uploadBytes(storageRef, imageFile);
+        imagePath = await getDownloadURL(storageRef);
       } catch (err) {
         console.error('Görsel yüklenemedi:', err);
         alert('Görsel yüklenirken bir hata oluştu, varsayılan görsel kullanılacak.');
